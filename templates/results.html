@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Routine </title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles1.css') }}">
+</head>
+<body>
+<h2>Random Generated Routine</h2>
+<div class="table-wrapper">
+    {% for results in result %}
+    <table class="fl-table">
+        <thead>
+
+            <tr>
+                <th>Time</th>
+                <th>08:00 AM-09:20 AM</th>
+                <th>09:30 AM-10:50 AM</th>
+                <th>11:00 AM-12:20 PM</th>
+                <th>12:30 PM-01:50 PM</th>
+                <th>02:00 PM-03:20 PM</th>
+                <th>03:30 PM-04:50 PM</th>
+                <th>05:00 PM-06:20 PM</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for time, day_schedule in results.items() %}
+<tr>
+    <td>{{ time }}</td>
+    {% for day, courses in day_schedule.items() %}
+    <td>
+        {% if courses %}
+            <ul>
+                {% for course in courses %}
+                <li>{{ course }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            No course
+        {% endif %}
+    </td>
+    {% endfor %}
+</tr>
+{% endfor %}
+
+        </tbody>
+    </table>
+    <br>
+    <br>
+    {% endfor %}
+</div>
+</body>
+</html>

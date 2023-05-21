@@ -1,0 +1,1 @@
+BASE_URL='https://usis.bracu.ac.bd/academia/admissionRequirement/getAvailableSeatStatus'
