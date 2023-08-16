@@ -1,5 +1,5 @@
 # Use an official Python runtime as the base image
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 # Set the working directory to /app
 WORKDIR /app
@@ -17,4 +17,4 @@ EXPOSE 80
 ENV FASTAPI_ENV=production
 
 # Run the FastAPI app using Gunicorn when the container launches
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:80", "--workers", "4"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80", "--log-level", "error"]
