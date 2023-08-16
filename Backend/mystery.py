@@ -24,7 +24,7 @@ class Routine(webdriver.Chrome):
     def land_first_page(self):
         self.get(const.BASE_URL)
     def thread(self,x):
-        print("Thread", x)
+        # print("Thread", x)
         temporary = []
         courseName = x
         course_list = self.find_elements(By.CSS_SELECTOR, 'td[style="text-align: center; width: 100px"]')
@@ -168,11 +168,11 @@ class Routine(webdriver.Chrome):
                                 routine['Thursday'][dum1] = [data[i][0], data[i][1], data[i][3]]
                                 visited.append(data[i][0])
 
-            for key, value in routine.items():
-                print(key)
-                print(value)
+            # for key, value in routine.items():
+            #     print(key)
+            #     print(value)
 
-            print("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+            # print("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
             for i in range(len(deleted)):
                 data.remove(deleted[i])
             self.store.append(routine)
