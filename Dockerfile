@@ -16,5 +16,5 @@ EXPOSE 80
 # Define environment variable for FastAPI to run in production mode
 ENV FASTAPI_ENV=production
 
-# Run the FastAPI app using Gunicorn when the container launches
-CMD ["gunicorn", "app.app:app", "--bind", "0.0.0.0:80", "--workers", "4"]
+# Run the FastAPI app when the container launches
+CMD ["uvicorn", "app.app:app", "--host", "0.0.0.0", "--port", "80"]
