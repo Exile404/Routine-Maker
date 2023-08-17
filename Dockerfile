@@ -9,13 +9,12 @@ RUN apt-get update && apt-get install -y wget unzip
 
 # Download and install ChromeDriver
 RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/LATEST_RELEASE
-RUN unzip /tmp/chromedriver.zip -d /opt/render/Routine-Maker
-RUN chmod +x /opt/render/Routine-Maker/chromedriver
+RUN unzip /tmp/chromedriver.zip -d /usr/local/bin/
+RUN chmod +x /usr/local/bin/chromedriver
 
 # Copy the requirements file into the container at /app
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
-
 
 # Copy the current directory contents into the container at /app
 COPY . /app/
@@ -28,3 +27,4 @@ ENV PORT=80
 
 # Run FastAPI app when the container launches
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
+
