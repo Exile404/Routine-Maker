@@ -9,15 +9,23 @@ class Routine(webdriver.Chrome):
     def __init__(self, teardown=False):
         self.teardown = teardown
         options = webdriver.ChromeOptions()
-        options.headless=True
+        options.add_argument("--headless")  # Ensure headless option is set correctly
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--window-size=1920,1080")
         options.add_experimental_option("excludeSwitches", ['enable-logging'])
         super(Routine, self).__init__(options=options)
-        self.implicitly_wait(300)
-        self.maximize_window()
+        self.implicitly_wait(300)  # Adjust implicit wait time as needed
         self.main_list = []
         self.store = []
+        print("Initialized WebDriver with headless mode")
 
-    def __exit__(self):
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
         if self.teardown:
             self.quit()
 
